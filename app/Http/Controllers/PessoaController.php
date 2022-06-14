@@ -38,8 +38,7 @@ class PessoaController extends Controller
     {
         if($request->isMethod('post'))
             return Pessoa::createPessoa($request->input());
-        else
-            return Pessoa::updatePessoa($request->input());
+            
     }
 
     /**
@@ -73,7 +72,7 @@ class PessoaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Pessoa::updatePessoa($request->input(), $id);
     }
 
     /**

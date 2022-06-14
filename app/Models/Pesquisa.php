@@ -25,7 +25,7 @@ class Pesquisa extends Model
         return Pesquisa::create($data);
     }
 
-    public static function updatePesquisa($id, $data)
+    public static function updatePesquisa($data, $id)
     {
         return Pesquisa::where('id', $id)->update($data);
     }

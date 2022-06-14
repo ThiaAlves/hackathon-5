@@ -38,8 +38,7 @@ class RespostaController extends Controller
     {
         if($request->isMethod('post'))
             return Resposta::createResposta($request->input());
-        else
-            return Resposta::updateResposta($request->input());
+        
     }
 
     /**
@@ -73,7 +72,7 @@ class RespostaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Resposta::updateResposta($request->input(), $id);
     }
 
     /**

@@ -37,8 +37,6 @@ class PesquisaController extends Controller
     {
         if($request->isMethod('post')){
             return Pesquisa::createPesquisa($request->input());
-        } else {
-            return Pesquisa::updatePesquisa($request->input());
         }
     }
 
@@ -73,7 +71,7 @@ class PesquisaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Pesquisa::updatePesquisa($request->input(), $id);
     }
 
     /**

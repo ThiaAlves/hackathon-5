@@ -20,7 +20,8 @@ class Pessoa extends Model
 
     public static function readPessoas()
     {
-        return Pessoa::orderBy('nome', 'asc')->get();
+        return Pessoa::select('id', 'nome', 'cpf', 'email', 'tipo', 'status')
+            ->orderBy('nome', 'asc')->get();
     }
 
     public static function createPessoa($data)
@@ -28,7 +29,7 @@ class Pessoa extends Model
         return Pessoa::create($data);
     }
 
-    public static function updatePessoa($id, $data)
+    public static function updatePessoa($data, $id)
     {
         return Pessoa::where('id', $id)->update($data);
     }
