@@ -11,6 +11,11 @@ class Pessoa extends Model
         'nome',
         'cpf',
         'email',
+        'estado',
+        'cidade',
+        'bairro',
+        'numero',
+        'cep',
         'senha',
         'tipo',
         'status',
@@ -20,7 +25,7 @@ class Pessoa extends Model
 
     public static function readPessoas()
     {
-        return Pessoa::select('id', 'nome', 'cpf', 'email', 'tipo', 'status')
+        return Pessoa::select('id', 'nome', 'cpf', 'email', 'estado', 'cidade', 'bairro', 'numero', 'cep', 'tipo', 'status')
             ->orderBy('nome', 'asc')->get();
     }
 
