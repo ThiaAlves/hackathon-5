@@ -18,13 +18,17 @@ return new class extends Migration
             $table->string('nome');
             $table->string('cpf');
             $table->string('email');
+            $table->string('estado');
+            $table->string('cidade');
+            $table->string('bairro');
+            $table->string('numero');
+            $table->string('cep');
             $table->string('senha');
             $table->enum('tipo', ['admin', 'cliente', 'colaborador']);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

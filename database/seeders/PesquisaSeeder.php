@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PesquisaSeeder extends Seeder
 {
@@ -14,12 +15,35 @@ class PesquisaSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('pesquisas')->insert([
-            'tema' => 'Pesquisa de Satisfação',
+            [
+            'tema' => 'Pesquisa de Satisfação 1',
             'descricao' => 'Pesquisa de Satisfação',
-            'perguntas' => '1. Qual o nível de satisfação que você está com o nosso sistema?' .
-                '2. Você gostaria de fazer uma nova pesquisa?',
+            'perguntas' => '1, Pergunta 1 / 2, Pergunta 2, / 3, Pergunta 3',
             'status' => true
-        ]);
+            ],
+            [
+            'tema' => 'Pesquisa de Satisfação 2',
+            'descricao' => 'Pesquisa de Satisfação',
+            'perguntas' => '1, Pergunta 1 / 2, Pergunta 2, / 3, Pergunta 3',
+            'status' => true
+            ],
+            [
+            'tema' => 'Pesquisa de Satisfação 3',
+            'descricao' => 'Pesquisa de Satisfação',
+            'perguntas' => '1, Pergunta 1 / 2, Pergunta 2, / 3, Pergunta 3',
+            'status' => true
+            ],
+            [
+            'tema' => 'Pesquisa de Satisfação 4',
+            'descricao' => 'Pesquisa de Satisfação',
+            'perguntas' => '1, Pergunta 1 / 2, Pergunta 2, / 3, Pergunta 3',
+            'status' => true
+            ],
+            ]
+
+    );
     }
+
 }
