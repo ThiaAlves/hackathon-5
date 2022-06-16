@@ -35,8 +35,16 @@ class PesquisaController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->isMethod('post')){
-            return Pesquisa::createPesquisa($request->input());
+
+        try {
+            $Pesquisa = Pesquisa::createPesquisa($request->input());
+            return response()->json(['success' => true,
+                'message' => 'Pesquisa criada com sucesso!',
+                'data' => $Pesquisa], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao criar pesquisa!',
+                'data' => $e->getMessage()], 500);
         }
     }
 
@@ -71,7 +79,16 @@ class PesquisaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Pesquisa::updatePesquisa($request->input(), $id);
+       try {
+            $Pesquisa = Pesquisa::updatePesquisa($request->input(), $id);
+            return response()->json(['success' => true,
+                'message' => 'Pesquisa atualizada com sucesso!',
+                'data' => $Pesquisa], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao atualizar pesquisa!',
+                'data' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -82,6 +99,15 @@ class PesquisaController extends Controller
      */
     public function destroy($id)
     {
-        $return = Pesquisa::deletePesquisa($id);
+       try {
+            $Pesquisa = Pesquisa::deletePesquisa($id);
+            return response()->json(['success' => true,
+                'message' => 'Pesquisa excluída com sucesso!',
+                'data' => $Pesquisa], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao excluir pesquisa!',
+                'data' => $e->getMessage()], 500);
+        }
     }
 }

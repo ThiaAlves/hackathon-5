@@ -36,9 +36,17 @@ class RespostaController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->isMethod('post'))
-            return Resposta::createResposta($request->input());
-        
+       try {
+            $Resposta = Resposta::createResposta($request->input());
+            return response()->json(['success' => true,
+                'message' => 'Resposta criada com sucesso!',
+                'data' => $Resposta], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao criar resposta!',
+                'data' => $e->getMessage()], 500);
+        }
+
     }
 
     /**
@@ -72,7 +80,16 @@ class RespostaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Resposta::updateResposta($request->input(), $id);
+        try {
+            $Resposta = Resposta::updateResposta($request->input(), $id);
+            return response()->json(['success' => true,
+                'message' => 'Resposta atualizada com sucesso!',
+                'data' => $Resposta], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao atualizar resposta!',
+                'data' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -83,6 +100,15 @@ class RespostaController extends Controller
      */
     public function destroy($id)
     {
-        return Resposta::deleteResposta($id);
+        try {
+            $Resposta = Resposta::deleteResposta($id);
+            return response()->json(['success' => true,
+                'message' => 'Resposta excluída com sucesso!',
+                'data' => $Resposta], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao excluir resposta!',
+                'data' => $e->getMessage()], 500);
+        }
     }
 }

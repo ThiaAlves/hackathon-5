@@ -36,9 +36,17 @@ class PessoaController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->isMethod('post'))
-            return Pessoa::createPessoa($request->input());
-            
+       try {
+            $Pessoa = Pessoa::createPessoa($request->input());
+            return response()->json(['success' => true,
+                'message' => 'Pessoa criada com sucesso!',
+                'data' => $Pessoa], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao criar pessoa!',
+                'data' => $e->getMessage()], 500);
+        }
+
     }
 
     /**
@@ -72,7 +80,16 @@ class PessoaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Pessoa::updatePessoa($request->input(), $id);
+        try {
+            $Pessoa = Pessoa::updatePessoa($id, $request->input());
+            return response()->json(['success' => true,
+                'message' => 'Pessoa atualizada com sucesso!',
+                'data' => $Pessoa], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao atualizar pessoa!',
+                'data' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -83,6 +100,15 @@ class PessoaController extends Controller
      */
     public function destroy($id)
     {
-        return Pessoa::deletePessoa($id);
+        try {
+            Pessoa::deletePessoa($id);
+            return response()->json(['success' => true,
+                'message' => 'Pessoa excluída com sucesso!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao excluir pessoa!',
+                'data' => $e->getMessage()], 500);
+        }
+
     }
 }
