@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pessoa;
+use App\Models\ModelPessoa;
 
 class PessoaController extends Controller
 {
@@ -14,7 +14,7 @@ class PessoaController extends Controller
      */
     public function index()
     {
-        $Pessoas = Pessoa::readPessoas();
+        $Pessoas = ModelPessoa::readPessoas();
         return $Pessoas;
     }
 
@@ -37,7 +37,7 @@ class PessoaController extends Controller
     public function store(Request $request)
     {
        try {
-            $Pessoa = Pessoa::createPessoa($request->input());
+            $Pessoa = ModelPessoa::createPessoa($request->input());
             return response()->json(['success' => true,
                 'message' => 'Pessoa criada com sucesso!',
                 'data' => $Pessoa], 200);
@@ -81,7 +81,7 @@ class PessoaController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $Pessoa = Pessoa::updatePessoa($id, $request->input());
+            $Pessoa = ModelPessoa::updatePessoa($id, $request->input());
             return response()->json(['success' => true,
                 'message' => 'Pessoa atualizada com sucesso!',
                 'data' => $Pessoa], 200);
@@ -101,7 +101,7 @@ class PessoaController extends Controller
     public function destroy($id)
     {
         try {
-            Pessoa::deletePessoa($id);
+            ModelPessoa::deletePessoa($id);
             return response()->json(['success' => true,
                 'message' => 'Pessoa excluída com sucesso!'], 200);
         } catch (\Exception $e) {

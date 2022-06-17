@@ -63,4 +63,5 @@ class Pessoa extends Authenticatable implements JWTSubject
             'status' => $this->status,
         ];
     }
+
 }

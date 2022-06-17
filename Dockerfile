@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 
 # Arguments defined in docker-compose.yml
 ARG user
@@ -31,10 +31,22 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www
 
-USER $user
+COPY . .
 
-# RUN composer install
+# USER $user
+USER root
 
-# RUN php artisan key:generate
+RUN composer update
 
-# RUN php artisan migrate
+RUN php artisan key:generate
+
+RUN chown -R angler:angler /var/www
+RUN chmod +777 storage/logs/laravel.log
+RUN chmod +777 storage/framework/cache/
+RUN chmod +777 storage/framework/sessions/
+RUN chmod +777 storage/framework/cache/data
+RUN php artisan cache:clear
+
+
+#RUN php artisan migrate --seed
+
