@@ -2,11 +2,22 @@
 
 namespace App\Models;
 
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Pessoa extends Model
+class Pessoa extends Authenticatable implements JWTSubject
 {
+    use HasFactory, Notifiable;
+
+    protected $table = 'pessoa';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'nome',
         'cpf',
@@ -16,31 +27,40 @@ class Pessoa extends Model
         'bairro',
         'numero',
         'cep',
-        'senha',
+        'password',
         'tipo',
         'status',
     ];
-    use HasFactory;
 
-
-    public static function readPessoas()
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
     {
-        return Pessoa::select('id', 'nome', 'cpf', 'email', 'estado', 'cidade', 'bairro', 'numero', 'cep', 'tipo', 'status')
-            ->orderBy('nome', 'asc')->get();
+        return $this->getKey();
     }
 
-    public static function createPessoa($data)
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
     {
-        return Pessoa::create($data);
-    }
-
-    public static function updatePessoa($data, $id)
-    {
-        return Pessoa::where('id', $id)->update($data);
-    }
-
-    public static function deletePessoa($id)
-    {
-        return Pessoa::where('id', $id)->delete();
+        return [
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'cpf' => $this->cpf,
+            'email' => $this->email,
+            'estado' => $this->estado,
+            'cidade' => $this->cidade,
+            'bairro' => $this->bairro,
+            'numero' => $this->numero,
+            'cep' => $this->cep,
+            'tipo' => $this->tipo,
+            'status' => $this->status,
+        ];
     }
 }

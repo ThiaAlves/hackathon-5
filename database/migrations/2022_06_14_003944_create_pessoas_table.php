@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pessoas', function (Blueprint $table) {
+        Schema::create('pessoa', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->string('cpf');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('bairro');
             $table->string('numero');
             $table->string('cep');
-            $table->string('senha');
+            $table->string('password');
             $table->enum('tipo', ['admin', 'cliente', 'colaborador']);
             $table->boolean('status')->default(true);
             $table->timestamps();
