@@ -56,4 +56,23 @@ class ModelPessoa extends Model
     {
         return ModelPessoa::find($id);
     }
+
+    public static function registerPessoa($data){
+        $tipo = 'cliente';
+        $status = 1;
+
+       return ModelPessoa::create([
+            'nome' => $data['nome'],
+            'cpf' => $data['cpf'],
+            'email' => $data['email'],
+            'estado' => $data['estado'],
+            'cidade' => $data['cidade'],
+            'bairro' => $data['bairro'],
+            'numero' => $data['numero'],
+            'cep' => $data['cep'],
+            'password' => bcrypt($data['password']),
+            'tipo' => $tipo,
+            'status' => $status,
+        ]);
+    }
 }
