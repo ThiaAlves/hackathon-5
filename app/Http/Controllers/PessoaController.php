@@ -57,7 +57,8 @@ class PessoaController extends Controller
      */
     public function show($id)
     {
-        //
+        $Pessoa = ModelPessoa::readPessoa($id);
+        return $Pessoa;
     }
 
     /**

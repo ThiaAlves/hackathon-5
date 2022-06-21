@@ -41,11 +41,12 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'jwt.verify'], function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
-    
+
 
 //Rotas API para Pessoa
 Route::get('/pessoas', [PessoaController::class, 'index']);
 Route::post('/pessoas', [PessoaController::class, 'store']);
+Route::get('/pessoas/{id}', [PessoaController::class, 'show']);
 Route::put('/pessoas/{id}', [PessoaController::class, 'update']);
 Route::delete('/pessoas/{id}', [PessoaController::class, 'destroy']);
 

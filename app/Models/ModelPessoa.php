@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ModelPessoa extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'pessoa';
 
     /**
@@ -50,5 +50,10 @@ class ModelPessoa extends Model
     public static function deletePessoa($id)
     {
         return ModelPessoa::where('id', $id)->delete();
+    }
+
+    public static function readPessoa($id)
+    {
+        return ModelPessoa::find($id);
     }
 }
