@@ -17,7 +17,11 @@ class Resposta extends Model
 
     public static function readRespostas()
     {
-        return Resposta::orderBy('pessoa_id', 'asc')->get();
+        return Resposta::orderBy('created_at', 'desc')
+        ->join('pessoa', 'pessoa.id', '=', 'respostas.pessoa_id')
+        ->join('pesquisas', 'pesquisas.id', '=', 'respostas.pesquisa_id')
+        ->select('respostas.*', 'pessoa.nome as pessoa', 'pesquisas.tema as pesquisa')
+        ->get();
     }
 
     public static function createResposta($data)
