@@ -19,7 +19,9 @@ class ModelPessoa extends Model
     protected $fillable = [
         'nome',
         'cpf',
+        'telefone',
         'email',
+        'endereco',
         'estado',
         'cidade',
         'bairro',
@@ -64,7 +66,9 @@ class ModelPessoa extends Model
        return ModelPessoa::create([
             'nome' => $data['nome'],
             'cpf' => $data['cpf'],
+            'telefone' => $data['telefone'],
             'email' => $data['email'],
+            'endereco' => $data['endereco'],
             'estado' => $data['estado'],
             'cidade' => $data['cidade'],
             'bairro' => $data['bairro'],

@@ -53,12 +53,14 @@ Route::delete('/pessoas/{id}', [PessoaController::class, 'destroy']);
 
 //Rotas API para Pesquisa
 Route::get('/pesquisas', [PesquisaController::class, 'index']);
+Route::get('/pesquisas/{id}', [PesquisaController::class, 'show']);
 Route::post('/pesquisas', [PesquisaController::class, 'store']);
 Route::put('/pesquisas/{id}', [PesquisaController::class, 'update']);
 Route::delete('/pesquisas/{id}', [PesquisaController::class, 'destroy']);
 
 //Rotas API para Resposta
 Route::get('/respostas', [RespostaController::class, 'index']);
+Route::get('/respostas/{id}', [RespostaController::class, 'show']);
 Route::post('/respostas', [RespostaController::class, 'store']);
 Route::put('/respostas/{id}', [RespostaController::class, 'update']);
 Route::delete('/respostas/{id}', [RespostaController::class, 'destroy']);
@@ -66,18 +68,21 @@ Route::delete('/respostas/{id}', [RespostaController::class, 'destroy']);
 
 
 Route::get('/v1/pessoas', [PessoaController::class, 'index']);
+Route::get('/v1/pessoas/{id}', [PessoaController::class, 'show']);
 Route::post('/v1/pessoas', [PessoaController::class, 'store']);
 Route::put('/v1/pessoas/{id}', [PessoaController::class, 'update']);
 Route::delete('/v1/pessoas/{id}', [PessoaController::class, 'destroy']);
 
 //Rotas API para Pesquisa
 Route::get('/v1/pesquisas', [PesquisaController::class, 'index']);
+Route::get('/v1/pesquisas/{id}', [PesquisaController::class, 'show']);
 Route::post('/v1/pesquisas', [PesquisaController::class, 'store']);
 Route::put('/v1/pesquisas/{id}', [PesquisaController::class, 'update']);
 Route::delete('/v1/pesquisas/{id}', [PesquisaController::class, 'destroy']);
 
 //Rotas API para Resposta
 Route::get('/v1/respostas', [RespostaController::class, 'index']);
+Route::get('/v1/respostas/{id}', [RespostaController::class, 'show']);
 Route::post('/v1/respostas', [RespostaController::class, 'store']);
 Route::put('/v1/respostas/{id}', [RespostaController::class, 'update']);
 Route::delete('/v1/respostas/{id}', [RespostaController::class, 'destroy']);

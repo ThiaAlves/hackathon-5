@@ -20,8 +20,10 @@ class PessoaSeeder extends Seeder
             [
                 'nome' => 'Usuário de teste',
                 'cpf' => '12345678901',
+                'telefone' => '4499887722',
                 'email' => 'usuario@teste.com.br',
                 'password' => bcrypt( 'senha123' ),
+                'endereco' => 'Rua Teste',
                 'estado' => 'SP',
                 'cidade' => 'São Paulo',
                 'bairro' => 'Centro',
@@ -33,8 +35,10 @@ class PessoaSeeder extends Seeder
             [
                 'nome' => 'Administrador',
                 'cpf' => '12345678901',
+                'telefone' => '44998887722',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt( 'senha123' ),
+                'endereco' => 'Rua Teste 2',
                 'estado' => 'SP',
                 'cidade' => 'São Paulo',
                 'bairro' => 'Centro',

@@ -37,7 +37,12 @@ class Resposta extends Model
 
     public static function readResposta($id)
     {
-        return Resposta::where('id', $id)->first();
+        return Resposta::orderBy('respostas.updated_at', 'desc')
+        ->join('pessoa', 'pessoa.id', '=', 'respostas.pessoa_id')
+        ->join('pesquisas', 'pesquisas.id', '=', 'respostas.pesquisa_id')
+        ->select('respostas.id as id_resposta', 'pessoa.nome as nome_pessoa', 'pessoa.id as id_pessoa', 'pesquisas.tema as tema_pesquisa', 'pesquisas.id as id_pesquisa', 'respostas.respostas', 'respostas.status as status_resposta')
+        ->where('respostas.id', $id)
+        ->get();
     }
 
     public static function readRespostaPessoa($id)
