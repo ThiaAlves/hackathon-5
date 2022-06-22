@@ -19,7 +19,9 @@ class ModelPessoa extends Model
     protected $fillable = [
         'nome',
         'cpf',
+        'telefone',
         'email',
+        'endereco',
         'estado',
         'cidade',
         'bairro',
@@ -55,5 +57,26 @@ class ModelPessoa extends Model
     public static function readPessoa($id)
     {
         return ModelPessoa::find($id);
+    }
+
+    public static function registerPessoa($data){
+        $tipo = 'cliente';
+        $status = 1;
+
+       return ModelPessoa::create([
+            'nome' => $data['nome'],
+            'cpf' => $data['cpf'],
+            'telefone' => $data['telefone'],
+            'email' => $data['email'],
+            'endereco' => $data['endereco'],
+            'estado' => $data['estado'],
+            'cidade' => $data['cidade'],
+            'bairro' => $data['bairro'],
+            'numero' => $data['numero'],
+            'cep' => $data['cep'],
+            'password' => bcrypt($data['password']),
+            'tipo' => $tipo,
+            'status' => $status,
+        ]);
     }
 }

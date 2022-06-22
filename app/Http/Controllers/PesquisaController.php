@@ -56,7 +56,7 @@ class PesquisaController extends Controller
      */
     public function show($id)
     {
-        //
+        return Pesquisa::readPesquisa($id);
     }
 
     /**

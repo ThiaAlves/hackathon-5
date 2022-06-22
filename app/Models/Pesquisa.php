@@ -22,7 +22,15 @@ class Pesquisa extends Model
 
     public static function createPesquisa($data)
     {
-        return Pesquisa::create($data);
+
+        $perguntas = $data['pergunta1'] .'|' .$data['pergunta2'] .'|' .$data['pergunta3'];
+
+        return Pesquisa::create([
+            'tema' => $data['tema'],
+            'descricao' => $data['descricao'],
+            'perguntas' => $perguntas,
+            'status' => $data['status'],
+        ]);
     }
 
     public static function updatePesquisa($data, $id)

@@ -123,4 +123,22 @@ class PessoaController extends Controller
         }
 
     }
+
+    public function register(Request $request)
+    {
+        try {
+            $Pessoa = ModelPessoa::registerPessoa($request->input());
+            return response()->json(['success' => true,
+                'message' => 'Usuário cadastrado com sucesso!',
+                'data' => $Pessoa], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao criar usuário!',
+                'data' => $e->getMessage()], 500);
+        }
+    }
+
+    
+
+
 }

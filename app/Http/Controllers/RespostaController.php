@@ -57,7 +57,7 @@ class RespostaController extends Controller
      */
     public function show($id)
     {
-        //
+        return Resposta::readResposta($id);
     }
 
     /**
@@ -68,7 +68,7 @@ class RespostaController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
