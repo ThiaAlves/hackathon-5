@@ -65,6 +65,7 @@ class AuthController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
+
     /**
      * Get the token array structure.
      *

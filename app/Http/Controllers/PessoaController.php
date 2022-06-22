@@ -72,6 +72,17 @@ class PessoaController extends Controller
         //
     }
 
+    public function register()
+    {
+
+        $data = request(['nome', 'email', 'password', 'cpf', 'cidade', 'estado', 'cep', 'numero', 'endereco', 'telefone', 'bairro']);
+        $data['password'] = bcrypt($data['password']);
+        $data['tipo'] = 'cliente';
+        $data['status'] = 1;
+
+        $pessoa = ModelPessoa::createPessoa($data);
+    }
+
     /**
      * Update the specified resource in storage.
      *
