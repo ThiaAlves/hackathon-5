@@ -56,9 +56,24 @@ class Resposta extends Model
         ];
     }
 
-    public static function readRespostaPessoa($id)
+    public static function readRespostabByPessoa($id)
     {
-        return Resposta::where('pessoa_id', $id)->first();
+        return Resposta::orderBy('respostas.updated_at', 'desc')
+        ->join('pessoa', 'pessoa.id', '=', 'respostas.pessoa_id')
+        ->join('pesquisas', 'pesquisas.id', '=', 'respostas.pesquisa_id')
+        ->select('respostas.id as id_resposta', 'pessoa.nome as nome_pessoa', 'pessoa.id as id_pessoa', 'pesquisas.tema as tema_pesquisa', 'pesquisas.id as id_pesquisa' ,'pesquisas.perguntas', 'respostas.respostas', 'respostas.status as status_resposta')
+        ->where('respostas.pessoa_id', $id)
+        ->get();
+    }
+
+    public static function readRespostaByPesquisa($id)
+    {
+        return Resposta::orderBy('respostas.updated_at', 'desc')
+        ->join('pessoa', 'pessoa.id', '=', 'respostas.pessoa_id')
+        ->join('pesquisas', 'pesquisas.id', '=', 'respostas.pesquisa_id')
+        ->select('respostas.id as id_resposta', 'pessoa.nome as nome_pessoa', 'pessoa.id as id_pessoa', 'pesquisas.tema as tema_pesquisa', 'pesquisas.id as id_pesquisa' ,'pesquisas.perguntas', 'respostas.respostas', 'respostas.status as status_resposta')
+        ->where('respostas.pesquisa_id', $id)
+        ->get();
     }
 
     public static function readRespostaPesquisa($id)

@@ -88,3 +88,7 @@ Route::get('/v1/respostas/{id}', [RespostaController::class, 'show']);
 Route::post('/v1/respostas', [RespostaController::class, 'store']);
 Route::put('/v1/respostas/{id}', [RespostaController::class, 'update']);
 Route::delete('/v1/respostas/{id}', [RespostaController::class, 'destroy']);
+
+Route::get('/v1/respostasPorPessoa/{id}', [RespostaController::class, 'respostasPorPessoa']);
+
+Route::get('/v1/respostasPorPesquisa/{id}', [RespostaController::class, 'respostasPorPesquisa']);

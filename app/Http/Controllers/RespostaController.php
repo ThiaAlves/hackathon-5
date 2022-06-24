@@ -111,4 +111,14 @@ class RespostaController extends Controller
                 'data' => $e->getMessage()], 500);
         }
     }
+
+    public function respostasPorPessoa($id)
+    {
+        return Resposta::readRespostabByPessoa($id);
+    }
+
+    public function respostasPorPesquisa($id)
+    {
+        return Resposta::readRespostaByPesquisa($id);
+    }
 }
