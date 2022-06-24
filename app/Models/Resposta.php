@@ -26,7 +26,14 @@ class Resposta extends Model
 
     public static function createResposta($data)
     {
-        return Resposta::create($data);
+        $respostas = $data['resposta1'] .'|' .$data['resposta2'] .'|' .$data['resposta3'];
+
+        return Resposta::create([
+            'pessoa_id' => $data['pessoa_id'],
+            'pesquisa_id' => $data['pesquisa_id'],
+            'respostas' => $respostas,
+            'status' => '0',
+        ]);
     }
 
     public static function updateResposta($id, $data)
@@ -48,7 +55,7 @@ class Resposta extends Model
         ->where('respostas.id', $id)
         ->get();
 
-        $perguntas = explode('/', $resposta[0]->perguntas);
+        $perguntas = explode('|', $resposta[0]->perguntas);
 
         return [
             'resposta' => $resposta[0],
