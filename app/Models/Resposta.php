@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resposta extends Model
 {
+
+    use HasFactory;
+
     protected $fillable = [
         'pessoa_id',
         'pesquisa_id',
         'respostas',
         'status',
     ];
-    use HasFactory;
+
 
     public static function readRespostas()
     {
@@ -97,6 +100,15 @@ class Resposta extends Model
     {
         return Resposta::where('pessoa_id', $idPessoa)->where('pesquisa_id', $idPesquisa)->first()->respostas;
     }
+
+    public static function verificaResposta($id, $data)
+    {
+        return Resposta::where('id', $id)->update([
+            'status' => $data,
+        ]);
+    }
+
+
 
 
 }

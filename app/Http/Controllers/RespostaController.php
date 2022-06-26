@@ -121,4 +121,18 @@ class RespostaController extends Controller
     {
         return Resposta::readRespostaByPesquisa($id);
     }
+    //Método para atualizar status das respostas
+    public function atualizaResposta($id, Request $request)
+    {
+        try {
+            $Resposta = Resposta::verificaResposta($id, $request->input('status'));
+            return response()->json(['success' => true,
+                'message' => 'successo',
+                'data' => $Resposta], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,
+                'message' => 'Erro ao atualizar resposta!',
+                'data' => $e->getMessage()], 500);
+        }
+    }
 }

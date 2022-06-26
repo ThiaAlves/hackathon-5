@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Resposta;
+use Illuminate\Support\Facades\DB;
 
 class Pesquisa extends Model
 {
@@ -17,9 +19,12 @@ class Pesquisa extends Model
 
     public static function readPesquisas()
     {
-        return Pesquisa::orderBy('tema', 'asc')->get();
+        return Resposta::orderBy('p.tema', 'asc')
+        ->join('pesquisas as p', 'p.id', '=', 'respostas.pesquisa_id')
+        ->select('p.id', 'p.tema', 'p.descricao', 'p.perguntas', 'p.status', 'p.created_at', 'p.updated_at', DB::raw('count(respostas.id) as total_respostas'))
+        ->groupBy('p.id','p.tema', 'p.descricao',  'p.perguntas', 'p.status', 'p.created_at', 'p.updated_at')
+        ->get();
     }
-
     public static function createPesquisa($data)
     {
 

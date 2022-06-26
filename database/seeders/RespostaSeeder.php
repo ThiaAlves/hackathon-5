@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Resposta;
+use Faker\Factory as Faker;
 
 class RespostaSeeder extends Seeder
 {
@@ -15,32 +17,14 @@ class RespostaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('respostas')->insert([
-            [
-            'pessoa_id' => 1,
-            'pesquisa_id' => 1,
-            'respostas' => '1, Resposta 1 / 2, Resposta 2, / 3, Resposta 3',
-            'status' => true
-            ],
-            [
-            'pessoa_id' => 2,
-            'pesquisa_id' => 2,
-            'respostas' => '1, Resposta 1 / 2, Resposta 2, / 3, Resposta 3',
-            'status' => true
-            ],
-            [
-            'pessoa_id' => 3,
-            'pesquisa_id' => 3,
-            'respostas' => '1, Resposta 1 / 2, Resposta 2, / 3, Resposta 3',
-            'status' => true
-            ],
-            [
-            'pessoa_id' => 4,
-            'pesquisa_id' => 4,
-            'respostas' => '1, Resposta 1 / 2, Resposta 2, / 3, Resposta 3',
-            'status' => true
-            ],
-            ]
-    );
+        $faker = Faker::create('pt_BR');
+        foreach(range(1, 500) as $index) {
+            Resposta::create([
+                'respostas' => $faker->numberBetween(1, 10) . ' | ' . $faker->numberBetween(1, 10). ' | ' . $faker->text(20),
+                'pesquisa_id' => $faker->numberBetween(1, 10),
+                'pessoa_id' => $faker->numberBetween(1, 500),
+            ]);
+        }
+
     }
 }

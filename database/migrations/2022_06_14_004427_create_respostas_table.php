@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('respostas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pessoa_id');
+            // $table->foreign('pessoa_id')->references('id')->on('pessoa');
             $table->unsignedBigInteger('pesquisa_id');
+            // $table->foreign('pesquisa_id')->references('id')->on('pesquisas');
             $table->text('respostas');
             $table->boolean('status')->default(true);
             $table->timestamps();
