@@ -485,7 +485,7 @@ class PessoaSeeder extends Seeder
 
 
         $faker = Faker::create('pt_BR');
-        foreach(range(1, 500) as $index) {
+        foreach(range(1, 492) as $index) {
             Pessoa::create([
                 'nome' => $faker->name,
                 'cpf' => $faker->numberBetween(10000000000, 99999999999),

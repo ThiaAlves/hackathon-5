@@ -18,11 +18,12 @@ class RespostaSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('pt_BR');
-        foreach(range(1, 500) as $index) {
+        foreach(range(1, 487) as $index) {
             Resposta::create([
                 'respostas' => $faker->numberBetween(1, 10) . ' | ' . $faker->numberBetween(1, 10). ' | ' . $faker->text(20),
                 'pesquisa_id' => $faker->numberBetween(1, 10),
                 'pessoa_id' => $faker->numberBetween(1, 500),
+                'created_at' => $faker->dateTimeBetween('-1 month', 'now'),
             ]);
         }
 
