@@ -40,7 +40,7 @@ class ModelPessoa extends Model
     public static function readPessoas()
     {
         return Resposta::orderBy('p.created_at', 'asc')
-        ->join('pessoa as p', 'p.id', '=', 'respostas.pessoa_id')
+        ->rightjoin('pessoa as p', 'p.id', '=', 'respostas.pessoa_id')
         ->select('p.id', 'p.nome', 'p.cpf', 'p.telefone', 'p.email', 'p.endereco', 'p.estado', 'p.cidade', 'p.bairro', 'p.numero', 'p.cep', 'p.tipo',  'p.status', 'p.created_at', 'p.updated_at', DB::raw('count(respostas.id) as total_pesquisas_respondidas'))
         ->groupBy('p.id', 'p.nome', 'p.cpf', 'p.telefone', 'p.email', 'p.endereco', 'p.estado', 'p.cidade', 'p.bairro', 'p.numero', 'p.cep', 'p.tipo',  'p.status', 'p.created_at', 'p.updated_at')
         ->get();

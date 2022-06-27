@@ -36,16 +36,47 @@ class PessoaController extends Controller
      */
     public function store(Request $request)
     {
-       try {
-            $Pessoa = ModelPessoa::createPessoa($request->input());
-            return response()->json(['success' => true,
-                'message' => 'Pessoa criada com sucesso!',
-                'data' => $Pessoa], 200);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false,
-                'message' => 'Erro ao criar pessoa!',
-                'data' => $e->getMessage()], 500);
+
+        if(empty($request->id)){
+            try {
+                $Pessoa = ModelPessoa::createPessoa($request->input());
+                return response()->json(['success' => true,
+                    'message' => 'Pessoa criada com sucesso!',
+                    'data' => $Pessoa], 200);
+            } catch (\Exception $e) {
+                return response()->json(['success' => false,
+                    'message' => 'Erro ao criar pessoa!',
+                    'data' => $e->getMessage()], 500);
+            }
+        } else {
+            $data = array(
+                'nome' => $request->nome,
+                'cpf' => $request->cpf,
+                'telefone' => $request->telefone,
+                'email' => $request->email,
+                'endereco' => $request->endereco,
+                'estado' => $request->estado,
+                'cidade' => $request->cidade,
+                'bairro' => $request->bairro,
+                'numero' => $request->numero,
+                'cep' => $request->cep,
+                'password' => bcrypt($request->password),
+                'tipo' => $request->tipo,
+                'status' => $request->status ?? 1,
+            );
+            try {
+                $Pessoa = ModelPessoa::updatePessoa($request->id, $data);
+                return response()->json(['success' => true,
+                    'message' => 'Pessoa atualizada com sucesso!',
+                    'data' => $Pessoa], 200);
+            } catch (\Exception $e) {
+                return response()->json(['success' => false,
+                    'message' => 'Erro ao atualizar pessoa!',
+                    'data' => $e->getMessage()], 500);
+            }
         }
+
+
 
     }
 

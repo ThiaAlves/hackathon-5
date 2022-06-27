@@ -36,6 +36,7 @@ class PesquisaController extends Controller
     public function store(Request $request)
     {
 
+        if(empty($request->id)) {
         try {
             $Pesquisa = Pesquisa::createPesquisa($request->input());
             return response()->json(['success' => true,
@@ -45,6 +46,25 @@ class PesquisaController extends Controller
             return response()->json(['success' => false,
                 'message' => 'Erro ao criar pesquisa!',
                 'data' => $e->getMessage()], 500);
+        }
+        } else {
+            $pergunta = $request->pergunta1 .'|'. $request->pergunta2 .'|'. $request->pergunta3;
+            $data = array(
+                'tema' => $request->tema,
+                'descricao' => $request->descricao,
+                'perguntas' => $pergunta,
+                'status' => $request->status,
+            );
+            try {
+                $Pesquisa = Pesquisa::updatePesquisa($data, $request->id);
+                return response()->json(['success' => true,
+                    'message' => 'Pesquisa atualizada com sucesso!',
+                    'data' => $Pesquisa], 200);
+            } catch (\Exception $e) {
+                return response()->json(['success' => false,
+                    'message' => 'Erro ao atualizar pesquisa!',
+                    'data' => $e->getMessage()], 500);
+            }
         }
     }
 

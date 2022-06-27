@@ -20,7 +20,7 @@ class Pesquisa extends Model
     public static function readPesquisas()
     {
         return Resposta::orderBy('p.tema', 'asc')
-        ->join('pesquisas as p', 'p.id', '=', 'respostas.pesquisa_id')
+        ->rightjoin('pesquisas as p', 'p.id', '=', 'respostas.pesquisa_id')
         ->select('p.id', 'p.tema', 'p.descricao', 'p.perguntas', 'p.status', 'p.created_at', 'p.updated_at', DB::raw('count(respostas.id) as total_respostas'))
         ->groupBy('p.id','p.tema', 'p.descricao',  'p.perguntas', 'p.status', 'p.created_at', 'p.updated_at')
         ->get();
