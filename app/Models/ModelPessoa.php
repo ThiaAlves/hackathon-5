@@ -48,7 +48,21 @@ class ModelPessoa extends Model
 
     public static function createPessoa($data)
     {
-        return ModelPessoa::create($data);
+        return ModelPessoa::create([
+            'nome' => $data['nome'],
+            'cpf' => $data['cpf'],
+            'telefone' => $data['telefone'],
+            'email' => $data['email'],
+            'endereco' => $data['endereco'],
+            'estado' => $data['estado'],
+            'cidade' => $data['cidade'],
+            'bairro' => $data['bairro'],
+            'numero' => $data['numero'],
+            'cep' => $data['cep'],
+            'password' => bcrypt($data['password']),
+            'tipo' => $data['tipo'],
+            'status' => $data['status'],
+        ]);
     }
 
     public static function updatePessoa($id, $data)
